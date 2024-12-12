@@ -3,7 +3,7 @@ import React from "react";
 
 export default function BannerHome() {
   return (
-    <section className="h-[89vh] w-full relative flex flex-col justify-center">
+    <section className="h-[89vh] w-full relative flex flex-col justify-center flex-grow">
       {/* Image pour les écrans de bureau */}
       <Image
         src="/images/parfum-banner-pc.jpg"
