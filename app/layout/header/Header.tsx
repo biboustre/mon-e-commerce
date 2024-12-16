@@ -11,9 +11,11 @@ interface HeaderProps {
 
 export default function Header({ isLoggedIn, userName }: HeaderProps) {
   return (
-    <header className="flex justify-between p-7">
+    <header className="flex justify-between p-7 fixed w-full bg-gray-900 text-white inset-0 z-50 h-[100px]">
       <section className="flex gap-20">
-        <h1 className="font-extrabold text-3xl">Home</h1>
+        <Link href="/" className="font-extrabold text-3xl">
+          <h1>Home</h1>
+        </Link>
         <NavLinksHeader />
       </section>
       <section className="flex gap-5">

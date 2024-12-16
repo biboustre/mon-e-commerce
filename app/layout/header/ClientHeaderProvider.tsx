@@ -1,20 +1,17 @@
 "use client";
 
-import React, { useState, ReactNode } from "react";
 import Header from "./Header";
+import React, { useState } from "react";
 
-interface ClientHeaderProviderProps {
-  children: ReactNode;
-}
 
-const ClientHeaderProvider:  React.FC<ClientHeaderProviderProps> = ({ children }) => {
+
+const ClientHeaderProvider = () => {
   const [isLoggedIn] = useState<boolean>(false);
   const userName = "bibou";
 
   return (
     <>
       <Header isLoggedIn={isLoggedIn} userName={userName} />
-      {children}
     </>
   );
 };

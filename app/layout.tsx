@@ -14,10 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-gray-900">
-        <ClientHeaderProvider>
-          <main>{children}</main>
-        </ClientHeaderProvider>
+      <body className="bg-gray-900 flex h-[100vh] flex-col">
+        <ClientHeaderProvider/>
+          <main className="mt-[100px]">{children}</main>
       </body>
     </html>
   );

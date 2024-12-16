@@ -19,7 +19,7 @@ const CardCategories: React.FC<CardCategoriesHomeProps> = ({ category }) => {
       />
       <h1 className="font-bold text-xl mb-2 px-6 py-4">{category.title}</h1>
       <section className="px-6 pt-4 pb-2">
-        <Link href={`/categories/${category.id}`} passHref className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <Link href={`/categories/${category.id}`}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Voir la collection
         </Link>
       </section>
