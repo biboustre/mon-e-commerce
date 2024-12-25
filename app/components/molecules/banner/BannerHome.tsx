@@ -22,9 +22,9 @@ export default function BannerHome() {
       />
 
       <section className="flex flex-col items-center gap-10">
-        <h1 className="text-3xl">PARFUMERIE</h1>
-        <h2>VOTRE BOUTIQUE DE PARFUMS</h2>
-        <button className="bg-yellow-700 ">Acheter</button>
+        <h1 className="text-6xl font-bold">PARFUMERIE</h1>
+        <h2 className="font-bold text-2xl">VOTRE BOUTIQUE DE PARFUMS</h2>
+        <button className="text-xl">Acheter</button>
       </section>
     </section>
   );
