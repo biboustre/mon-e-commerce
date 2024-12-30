@@ -1,44 +1,74 @@
 "use client";
 
 import { useParams, useSearchParams } from "next/navigation";
-import { products } from "../../datas/productsData";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "../../types";
-
+import useFetch from "@/app/hooks/useFetch";
 
 const ProductPage = () => {
   const { id } = useParams();
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("categoryId");
-  const product: Product | undefined  = products.find((prod) => prod.id.toString() === id);
+  const {
+    data: product,
+    error,
+    loading,
+  } = useFetch<Product>(`https://fakestoreapi.com/products/${id}`);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-500 font-bold">{error}</p>;
+  }
 
   if (!product) {
-    return <div>Produit non trouvé</div>;
+    return <p>Produit non trouvé</p>;
+  }   /*OU 
+  if (loading || error || !product) {
+    return (
+      <div className="container mx-auto p-4">
+        {loading && <p>Loading...</p>}
+        {error && <p className="text-red-500 font-bold">{error}</p>}
+        {!loading && !error && !product && <p>Produit non trouvé</p>}
+      </div>
+    );
   }
+  */
 
   return (
     <main className="container mx-auto p-4">
       <header className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
-        <Link href={`/categories/${categoryId}`} className="text-blue-500 hover:underline">
+        <h1 className="text-3xl font-bold text-gray-900">{product.title}</h1>
+        <Link
+          href={`/categories/${categoryId}`}
+          className="text-blue-500 hover:underline"
+        >
           Retour aux produits
         </Link>
       </header>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="relative w-full h-96">
-          <Image
-            src={product.imageUrl}
-            alt={product.name}
-            layout="fill"
-            className="object-cover object-center rounded-lg shadow-lg"
-          />
+          {product.imageUrl ? (
+            <Image
+              src={product.imageUrl}
+              alt={product.title}
+              fill
+              className="object-cover object-center rounded-lg shadow-lg"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+              <span className="text-gray-500">Image non disponible</span>
+            </div>
+          )}
         </div>
         <div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Détails du produit</h2>
-          <p className="text-gray-600 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            Détails du produit
+          </h2>
+          <p className="text-gray-600 mb-4">{product.description}</p>
           <button className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300">
             Ajouter au panier
           </button>
