@@ -6,7 +6,7 @@ export default function NavLinksHeader() {
       <Link href="">Boutique</Link>
       <Link href="">A propos</Link>
       <Link href="">FAQ</Link>
-      <Link href="">Contact</Link>
+      <Link href="/contact">Contact</Link>
     </nav>
   );
 }
