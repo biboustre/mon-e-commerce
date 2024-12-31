@@ -43,7 +43,7 @@ const ProductPage = () => {
       <header className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900">{product.title}</h1>
         <Link
-          href={`/categories/${categoryId}`}
+          href={`/categories/${categoryId || ''}`}
           className="text-blue-500 hover:underline"
         >
           Retour aux produits

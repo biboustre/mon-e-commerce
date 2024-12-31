@@ -5,7 +5,7 @@ import { Product } from '../../../../types';
 
 interface ProductCardProps {
   product: Product;
-  categoryId: number;
+  categoryId: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, categoryId }) => {
@@ -28,7 +28,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, categoryId }) => {
           )}
         </figure>
         <figcaption className="px-6 py-4">
-          <h2 className="font-bold text-xl mb-2">{product.title}</h2>
+          <h2 className="font-bold text-xl text-gray-400 mb-2">{product.title}</h2>
+          <p className="text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">{product.description}</p>
         </figcaption>
       </article>
     </Link>

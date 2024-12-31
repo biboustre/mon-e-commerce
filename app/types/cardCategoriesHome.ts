@@ -4,3 +4,7 @@ export interface Category {
     imageUrl: string;
     link: string;
   }
+
+  export interface ApiCategory {
+    name: string;
+  }
