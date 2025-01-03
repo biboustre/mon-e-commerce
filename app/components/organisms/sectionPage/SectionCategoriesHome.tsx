@@ -12,7 +12,7 @@ export default function SectionCategoriesHome() {
   }
 
   return (
-    <section>
+    <section id="categories-home">
       <TitleDescription className="pt-16 pb-5 text-3xl text-center" title="nouveauté" />
       {error ? (
         <div className="text-red-500 font-bold">{error}</div>
