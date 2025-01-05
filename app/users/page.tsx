@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export default function Page() {
+export default function Users() {
   return (
     <div className="relative min-h-screen">
       <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 -z-10"></div>
