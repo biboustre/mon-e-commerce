@@ -7,6 +7,16 @@ import { Product } from "../../types";
 import useFetch from "@/app/hooks/useFetch";
 import Link from "next/link";
 
+const Loading: React.FC = () => <div>Loading...</div>;
+
+const Error: React.FC<{ message: string }> = ({ message }) => (
+  <div className="text-red-500 font-bold">{message}</div>
+);
+
+const InvalidCategory: React.FC = () => <div>Invalid category ID</div>;
+
+const NoProducts: React.FC = () => <div>Produit non trouvé</div>;
+
 const CategoryPage = () => {
   const { id } = useParams();
   const {
@@ -16,23 +26,7 @@ const CategoryPage = () => {
   } = useFetch<Product[]>(`https://fakestoreapi.com/products/category/${id}`);
 
   if (!id || Array.isArray(id)) {
-    return <div>Invalid category ID</div>;
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="text-red-500 font-bold">{error}</div>;
-  }
-
-  if (!products || !Array.isArray(products)) {
-    return <div>Produit non trouvé</div>;
-  }
-
-  if (!products || !Array.isArray(products)) {
-    return <div>Produit non trouvé</div>;
+    return <InvalidCategory />;
   }
 
   return (
@@ -50,11 +44,19 @@ const CategoryPage = () => {
         <Link href="/#categories-home">Retour</Link>
       </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} categoryId={id} />
-        ))}
-      </section>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error message={error} />
+      ) : !products || !Array.isArray(products) ? (
+        <NoProducts />
+      ) : (
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} categoryId={id} />
+          ))}
+        </section>
+      )}
     </main>
   );
 };
